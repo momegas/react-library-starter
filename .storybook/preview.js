@@ -6,4 +6,9 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  docs: {
+    // Opt-out of inline rendering
+    inlineStories: false,
+    iframeHeight: "300px",
+  },
 }

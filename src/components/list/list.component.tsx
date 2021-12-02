@@ -6,7 +6,7 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Divider from "@mui/material/Divider";
 import clsx from "clsx";
-import "./list.module.css";
+import styles from "./list.module.css";
 
 // TODO: how to solve the component problem?
 
@@ -198,7 +198,8 @@ export const List: React.FC<ListProps> = ({
   };
 
   return (
-    <MuiList className={`list ${className}`}>
+    // <MuiList className={`list ${className}`}>
+    <MuiList className={styles.list}>
       {items.map((item, i) => {
         if (item.routerLink) {
           return (
