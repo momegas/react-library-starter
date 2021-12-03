@@ -1,3 +1,5 @@
+import { StyledEngineProvider } from '@mui/material/styles';
+
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
@@ -11,4 +13,11 @@ export const parameters = {
     inlineStories: false,
     iframeHeight: "300px",
   },
+  // decorators: [
+  //   (Story) => (
+  //     <StyledEngineProvider injectFirst>
+  //       <Story />
+  //     </StyledEngineProvider>
+  //   ),
+  // ],
 }

@@ -7,24 +7,43 @@ module.exports = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-docs",
+    "@storybook/preset-scss",
+    // TODO: Clean up
+    // {
+    //   name: "@storybook/preset-scss",
+    //   options: {
+    //     cssLoaderOptions: {
+    //       modules: {
+    //         auto: true,
+    //         exportLocalsConvention: "camelCase",
+    //       },
+    //     },
+    //   },
+    // },
   ],
 
-  webpackFinal: async config => {
-    // Remove the existing css rule
-    config.module.rules = config.module.rules.filter(
-      f => f.test?.toString() !== '/\\.css$/'
+  // TODO: Clean up, do we need this now?
+  webpackFinal: async (config, { configType }) => {
+    // get index of css rule
+    const ruleCssIndex = config.module.rules.findIndex(
+      (rule) => rule.test.toString() === "/\\.css$/"
     );
 
-    config.module.rules.push({
-      test: /\.css$/,
-      use: ['style-loader', {
-        loader: 'css-loader',
-        options: {
-          modules: true, // Enable modules to help you using className
-        }
-      }],
-      include: path.resolve(__dirname, '../src'),
-    });
+    // // map over the 'use' array of the css rule and set the 'module' option to true
+    // config.module.rules[ruleCssIndex].use.map((item) => {
+    //   if (item.loader && item.loader.includes("/css-loader/")) {
+    //     item.options.modules = {
+    //       mode: "local",
+    //       localIdentName: 
+    //         configType === "PRODUCTION"
+    //           ? "[local]__[hash:base64:5]"
+    //           : "[name]__[local]__[hash:base64:5]",
+              
+    //     };
+    //   }
+
+    //   return item;
+    // });
 
     return config;
   },
